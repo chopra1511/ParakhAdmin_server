@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -8,6 +9,9 @@ const http = require("http");
 
 const productRoutes = require("./routes/product");
 const orderRoutes = require("./routes/order");
+
+const PORT = process.env.PORT || 3030;
+
 
 const app = express();
 const server = http.createServer(app);
@@ -25,12 +29,10 @@ app.use(productRoutes.routes);
 app.use(orderRoutes.routes);
 
 mongoose
-  .connect(
-    "mongodb+srv://rahul:rahul1511@parakh.uygnadp.mongodb.net/parakh?retryWrites=true&w=majority&appName=Parakh"
-  )
+  .connect(process.env.MONGODB_URI)
   .then(() => {
-    server.listen(3000, () => {
-      console.log(`Connected! and running on port ${3000}`);
+    server.listen(PORT, () => {
+      console.log(`Connected! and running on port ${PORT}`);
     });
   })
   .catch((err) => {

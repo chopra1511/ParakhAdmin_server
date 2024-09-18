@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config;
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -11,7 +11,6 @@ const productRoutes = require("./routes/product");
 const orderRoutes = require("./routes/order");
 
 const PORT = process.env.PORT || 3030;
-
 
 const app = express();
 const server = http.createServer(app);
